@@ -8,7 +8,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import java.util.*
 
-object HttpClientModule {
+object NetworkModule {
 
     private val module = module {
         factory { HttpClient(androidApplication()) }

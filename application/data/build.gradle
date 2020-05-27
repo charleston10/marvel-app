@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -9,17 +9,11 @@ android {
     def currentVersion = Versioning.getVersion()
 
     defaultConfig {
-        applicationId AndroidConfig.applicationId
         minSdkVersion AndroidConfig.minSdk
         targetSdkVersion AndroidConfig.targetSdk
         versionCode currentVersion.code
         versionName currentVersion.name
         testInstrumentationRunner AndroidConfig.instrumentationTestRunner
-
-        vectorDrawables.useSupportLibrary = true
-        vectorDrawables.generatedDensities = []
-
-        archivesBaseName = "app-${currentVersion.name}"
     }
 
     compileOptions {
@@ -32,13 +26,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            minifyEnabled false
-            lintOptions {
-                tasks.lint.enabled = false
-            }
-        }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

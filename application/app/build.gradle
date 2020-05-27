@@ -27,18 +27,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions{
+    kotlinOptions {
         jvmTarget = '1.8'
     }
 
     buildTypes {
-        debug {
-            minifyEnabled false
-            lintOptions {
-                tasks.lint.enabled = false
-            }
-        }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -47,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation project(":data")
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
     AndroidModule.androidTesting.forEach { androidTestImplementation it }
