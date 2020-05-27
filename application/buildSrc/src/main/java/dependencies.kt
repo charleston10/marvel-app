@@ -10,6 +10,8 @@ internal object Versions {
     const val testLogger = "1.4.0"
     const val navigation = "2.2.2"
     const val materialDesign = "1.1.0"
+    const val retrofit = "2.7.0"
+    const val squareMoshi = "1.9.2"
 }
 
 object BuildPlugins {
@@ -30,6 +32,12 @@ object Dependencies {
     val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     val koin = "org.koin:koin-android:2.0.1"
     val koinViewModel = "org.koin:koin-android-viewmodel:2.0.1"
+    val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    val squareMoshi = "com.squareup.moshi:moshi:${Versions.squareMoshi}"
+    val squareMoshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.squareMoshi}"
+    val squareMoshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.squareMoshi}"
 }
 
 object TestDependencies {
@@ -49,6 +57,18 @@ object AndroidModule {
         Dependencies.navigationUi,
         Dependencies.koin,
         Dependencies.koinViewModel
+    )
+
+    val data = listOf(
+        Dependencies.koin,
+        Dependencies.coreKtx,
+        Dependencies.kotlinStdlib,
+        Dependencies.retrofit,
+        Dependencies.retrofitConverter,
+        Dependencies.retrofitMoshi,
+        Dependencies.squareMoshi,
+        Dependencies.squareMoshiKotlin,
+        Dependencies.squareMoshiAdapter
     )
 
     val unitTesting = listOf(
