@@ -21,7 +21,7 @@ class HttpClient(private val application: Application) {
 
     fun <T> create(restApiClass: Class<T>): T {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://gateway.marvel.com")
             .addConverterFactory(createMoshi())
             .client(createOkHttp())
             .build()

@@ -17,8 +17,8 @@ class AuthInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val timestamp = System.currentTimeMillis().toString()
-        val publicKey = "0838df2b5cd52a2e8d38d7be86e041fead3b43a2"
-        val hash: String = generateHash(timestamp, publicKey, "5ef027befa4ba7dc659518d6d6925d57")
+        val publicKey = "5ef027befa4ba7dc659518d6d6925d57"
+        val hash: String = generateHash(timestamp, publicKey, "0838df2b5cd52a2e8d38d7be86e041fead3b43a2")
 
         var request: Request = chain.request()
 

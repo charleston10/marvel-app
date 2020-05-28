@@ -1,9 +1,8 @@
 package com.charleston.data.remote.response
 
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import com.squareup.moshi.Json
 
 data class DataResponse(
-    @SerializedName("total") val id: Int,
-    @SerializedName("results") val characters: List<CharacterResponse>
-) : Serializable
+    @Json(name = "total") val total: Int,
+    @Json(name = "results") val characters: List<CharacterResponse>
+)

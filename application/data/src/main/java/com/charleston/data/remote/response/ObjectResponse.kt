@@ -1,9 +1,7 @@
 package com.charleston.data.remote.response
 
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import com.squareup.moshi.Json
 
 data class ObjectResponse(
-    @SerializedName("copyright") val copyright: String,
-    @SerializedName("data") val data: DataResponse
-) : Serializable
+    @Json(name = "data") val data: DataResponse
+)
