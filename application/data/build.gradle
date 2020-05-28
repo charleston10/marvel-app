@@ -14,6 +14,8 @@ android {
         versionCode currentVersion.code
         versionName currentVersion.name
         testInstrumentationRunner AndroidConfig.instrumentationTestRunner
+
+        buildConfigField "String", "BASE_URL", '"https://gateway.marvel.com"'
     }
 
     compileOptions {

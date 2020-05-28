@@ -1,4 +1,4 @@
-package com.charleston.data
+package com.charleston.data.remote
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter

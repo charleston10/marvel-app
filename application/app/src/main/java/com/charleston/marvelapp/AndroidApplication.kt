@@ -1,6 +1,6 @@
 package com.charleston.marvelapp
 
-import com.charleston.data.NetworkModule
+import com.charleston.data.remote.NetworkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 

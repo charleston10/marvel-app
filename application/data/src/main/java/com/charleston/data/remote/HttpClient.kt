@@ -1,4 +1,4 @@
-package com.charleston.data
+package com.charleston.data.remote
 
 import android.app.Application
 import com.squareup.moshi.Moshi
@@ -12,6 +12,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class HttpClient(private val application: Application) {
+
     private lateinit var okHttpClient: OkHttpClient
 
     private companion object {
@@ -38,6 +39,7 @@ class HttpClient(private val application: Application) {
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
             .cache(cache)
+            .addInterceptor(AuthInterceptor())
 
         okHttpClient = okHttpBuilder.build()
 
