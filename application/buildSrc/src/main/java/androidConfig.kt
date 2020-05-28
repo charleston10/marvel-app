@@ -1,6 +1,6 @@
 object AndroidConfig {
 
-    val applicationId = "io.dotanuki.blockked"
+    val applicationId = "com.charleston.marvelapp"
 
     val compileSdk = 28
     val minSdk = 21
