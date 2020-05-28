@@ -7,7 +7,7 @@ class ListCharactersUseCase constructor(
     private val repository: IMarvelRepository
 ) {
 
-    suspend operator fun invoke(): List<CharacterModel> {
+    suspend fun execute(): List<CharacterModel> {
         return repository.getCharacters(page = 1, limit = 1)
     }
 }
