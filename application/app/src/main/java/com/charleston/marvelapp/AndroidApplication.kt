@@ -14,9 +14,10 @@ open class AndroidApplication : android.app.Application() {
 
     private fun startKoin() {
         org.koin.core.context.startKoin {
-            androidContext(applicationContext)
-            DataModule.loadModule()
+            androidContext(this@AndroidApplication)
+            AppModule.loadModule()
             DomainModule.loadModule()
+            DataModule.loadModule()
             androidLogger()
         }
     }
