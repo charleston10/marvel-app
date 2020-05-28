@@ -1,6 +1,7 @@
 package com.charleston.marvelapp
 
 import com.charleston.data.DataModule
+import com.charleston.domain.DomainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
@@ -15,6 +16,7 @@ open class AndroidApplication : android.app.Application() {
         org.koin.core.context.startKoin {
             androidContext(applicationContext)
             DataModule.loadModule()
+            DomainModule.loadModule()
             androidLogger()
         }
     }

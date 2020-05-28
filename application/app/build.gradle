@@ -41,6 +41,8 @@ android {
 
 dependencies {
     implementation project(":data")
+    implementation project(":domain")
+
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
     AndroidModule.androidTesting.forEach { androidTestImplementation it }

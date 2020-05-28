@@ -4,6 +4,8 @@ import com.charleston.data.remote.MarvelCloud
 import com.charleston.data.remote.network.HttpClient
 import com.charleston.data.remote.request.MarvelApi
 import com.charleston.data.repository.MarvelRepository
+import com.charleston.domain.interactor.ListCharactersUseCase
+import com.charleston.domain.repository.IMarvelRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -16,19 +18,16 @@ object DataModule {
 
     private val module = module {
         factory {
-            HttpClient(
-                androidApplication()
-            )
-        }
-        factory {
             Moshi.Builder()
                 .add(KotlinJsonAdapterFactory())
                 .add(Date::class.java, Rfc3339DateJsonAdapter())
                 .build()
         }
+        factory { HttpClient(androidApplication()) }
         factory { get<HttpClient>().create(MarvelApi::class.java) }
         factory { MarvelCloud(get()) }
-        factory { MarvelRepository(get()) }
+        factory<IMarvelRepository> { MarvelRepository(get()) }
+        factory { ListCharactersUseCase(get()) }
     }
 
     fun loadModule() {

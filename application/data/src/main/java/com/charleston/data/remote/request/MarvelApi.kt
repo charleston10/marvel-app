@@ -11,5 +11,5 @@ interface MarvelApi {
         @Query("offset") page: Int,
         @Query("limit") limit: Int,
         @Query("orderBy") order: String
-    ): List<ObjectResponse>
+    ): ObjectResponse
 }

@@ -71,6 +71,11 @@ object AndroidModule {
         Dependencies.squareMoshiAdapter
     )
 
+    val domain = listOf(
+        Dependencies.koin,
+        Dependencies.kotlinStdlib
+    )
+
     val unitTesting = listOf(
         TestDependencies.jUnit
     )

@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation project(":domain")
+
     AndroidModule.data.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
 }
