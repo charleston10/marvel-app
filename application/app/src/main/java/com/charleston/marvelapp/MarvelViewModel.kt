@@ -13,10 +13,10 @@ class MarvelViewModel(
 
     private var coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
-
     fun listCharacters(){
         coroutineScope.launch {
             val list = listCharactersUseCase.execute()
+            list.size
         }
     }
 }
