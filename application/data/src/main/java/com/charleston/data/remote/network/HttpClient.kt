@@ -1,4 +1,4 @@
-package com.charleston.data.remote
+package com.charleston.data.remote.network
 
 import android.app.Application
 import com.squareup.moshi.Moshi

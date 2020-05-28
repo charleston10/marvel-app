@@ -1,4 +1,4 @@
-package com.charleston.data.remote
+package com.charleston.data.remote.network
 
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
