@@ -6,10 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Characters Featured"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_featured"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
         android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_height="200dp"
         tools:listitem="@layout/item_character_featured" />
 </androidx.constraintlayout.widget.ConstraintLayout>
