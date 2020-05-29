@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.charleston.domain.model.CharacterModel
-import com.charleston.marvelapp.databinding.ItemCharacterFeaturedBinding
+import com.charleston.marvelapp.databinding.ItemCharacterBinding
 
 class CharacterFeaturedAdapter : RecyclerView.Adapter<CharacterFeaturedAdapter.ViewHolder>() {
 
@@ -15,7 +15,7 @@ class CharacterFeaturedAdapter : RecyclerView.Adapter<CharacterFeaturedAdapter.V
         return ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_character_featured,
+                R.layout.item_character,
                 parent,
                 false
             )
@@ -36,7 +36,7 @@ class CharacterFeaturedAdapter : RecyclerView.Adapter<CharacterFeaturedAdapter.V
     }
 
     inner class ViewHolder(
-        private val viewDataBinding: ItemCharacterFeaturedBinding
+        private val viewDataBinding: ItemCharacterBinding
     ) : RecyclerView.ViewHolder(viewDataBinding.root) {
 
         fun bind(data: CharacterModel) {

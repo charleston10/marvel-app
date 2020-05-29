@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.charleston.marvelapp.extensions.divisorLastList
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -17,7 +18,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupFeaturedCharacters()
+        setupListCharacters()
+        setupListSeries()
         observerViewModel()
     }
 
@@ -27,14 +29,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         })
     }
 
-    private fun setupFeaturedCharacters() {
+    private fun setupListCharacters() {
         featuredAdapter = CharacterFeaturedAdapter()
 
-        list_featured.run {
+        list_characters.run {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             adapter = featuredAdapter
         }
 
-        LinearSnapHelper().attachToRecyclerView(list_featured)
+        LinearSnapHelper().attachToRecyclerView(list_characters)
+    }
+
+    private fun setupListSeries(){
+        list_series.run {
+            layoutManager = LinearLayoutManager(context)
+            adapter = featuredAdapter
+            addItemDecoration(divisorLastList())
+        }
     }
 }

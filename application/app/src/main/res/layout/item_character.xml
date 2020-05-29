@@ -36,7 +36,8 @@
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     app:bindImageUrl="@{model.imageUrl}"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/example_background" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -50,8 +51,8 @@
                     app:layout_constraintTop_toTopOf="@+id/textView" />
 
                 <TextView
-                    style="@style/Title"
                     android:id="@+id/textView"
+                    style="@style/Title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
