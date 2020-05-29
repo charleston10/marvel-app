@@ -12,4 +12,10 @@ interface MarvelApi {
         @Query("limit") limit: Int,
         @Query("orderBy") order: String
     ): ObjectResponse
+
+    @GET("/v1/public/comics")
+    suspend fun getComics(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): ObjectResponse
 }

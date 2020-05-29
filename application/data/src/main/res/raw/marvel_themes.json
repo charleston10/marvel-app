@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Characters",
+    "image_url": "https://i.pinimg.com/564x/ed/72/77/ed7277418e4f238fef904e432d31f466.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Series",
+    "image_url": "https://www.denofgeek.com/wp-content/uploads/2020/04/marvel-comics-unlimited-recommendations.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Comics",
+    "image_url": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2019%2F07%2Fmarvel-2000.jpg"
+  }
+]

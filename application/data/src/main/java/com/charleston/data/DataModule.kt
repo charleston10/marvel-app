@@ -1,5 +1,6 @@
 package com.charleston.data
 
+import com.charleston.data.local.MarvelLocal
 import com.charleston.data.remote.MarvelCloud
 import com.charleston.data.remote.network.HttpClient
 import com.charleston.data.remote.request.MarvelApi
@@ -25,7 +26,8 @@ object DataModule {
         factory { HttpClient(androidApplication()) }
         factory { get<HttpClient>().create(MarvelApi::class.java) }
         factory { MarvelCloud(get()) }
-        factory<IMarvelRepository> { MarvelRepository(get()) }
+        factory { MarvelLocal(get()) }
+        factory<IMarvelRepository> { MarvelRepository(get(), get()) }
     }
 
     fun loadModule() {

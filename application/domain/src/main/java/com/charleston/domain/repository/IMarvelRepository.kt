@@ -1,7 +1,9 @@
 package com.charleston.domain.repository
 
 import com.charleston.domain.model.CharacterModel
+import com.charleston.domain.model.ThemeModel
 
 interface IMarvelRepository {
+    suspend fun getThemes(): List<ThemeModel>
     suspend fun getCharacters(offset: Int, limit: Int): List<CharacterModel>
 }

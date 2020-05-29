@@ -15,7 +15,7 @@ class CharacterMapper : IMapper<CharacterResponse, CharacterModel> {
 
     private fun getImageURI(path: String, extension: String): String {
         return if(isNoImage(path)){
-            "https://i.pinimg.com/originals/db/b2/12/dbb2129035f83c491af200bb58e257cc.jpg"
+            "http://cdn30.us1.fansshare.com/image/marvel/marvel-logo-hd-images-wallpapers-logo-838491383.jpg"
         }else{
             path.plus(".").plus(extension)
         }

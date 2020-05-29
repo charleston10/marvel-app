@@ -39,6 +39,7 @@ object Dependencies {
     val squareMoshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.squareMoshi}"
     val squareMoshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.squareMoshi}"
     val glide = "com.github.bumptech.glide:glide:4.9.0"
+    val commonsIo = "commons-io:commons-io:2.4"
 }
 
 object TestDependencies {
@@ -70,7 +71,8 @@ object AndroidModule {
         Dependencies.retrofitMoshi,
         Dependencies.squareMoshi,
         Dependencies.squareMoshiKotlin,
-        Dependencies.squareMoshiAdapter
+        Dependencies.squareMoshiAdapter,
+        Dependencies.commonsIo
     )
 
     val domain = listOf(
