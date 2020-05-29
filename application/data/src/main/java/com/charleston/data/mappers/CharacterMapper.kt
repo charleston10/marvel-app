@@ -7,7 +7,9 @@ class CharacterMapper : IMapper<CharacterResponse, CharacterModel> {
 
     override fun transform(entity: CharacterResponse): CharacterModel {
         return CharacterModel(
-            entity.name
+            name = entity.name,
+            description = entity.description,
+            imageUrl = getImageURI(entity.thumbnail.path, entity.thumbnail.extension)
         )
     }
 
