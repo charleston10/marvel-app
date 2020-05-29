@@ -1,7 +1,9 @@
 package com.charleston.marvelapp
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.charleston.domain.interactor.ListCharactersUseCase
+import com.charleston.domain.model.CharacterModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -13,10 +15,17 @@ class MarvelViewModel(
 
     private var coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
-    fun listCharacters(){
+    private val listFeaturedMutableLiveData = MutableLiveData<List<CharacterModel>>()
+    val listFeaturedLiveData = listFeaturedMutableLiveData
+
+    init {
+        listCharacters()
+    }
+
+    fun listCharacters() {
         coroutineScope.launch {
             val list = listCharactersUseCase.execute()
-            list.size
+            listFeaturedLiveData.postValue(list)
         }
     }
 }
