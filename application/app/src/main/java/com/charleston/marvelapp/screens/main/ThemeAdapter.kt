@@ -1,21 +1,24 @@
-package com.charleston.marvelapp
+package com.charleston.marvelapp.screens.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.charleston.domain.model.CharacterModel
-import com.charleston.marvelapp.databinding.ItemCharacterBinding
+import com.charleston.domain.model.ThemeModel
+import com.charleston.marvelapp.R
+import com.charleston.marvelapp.databinding.ItemThemeBinding
 
-class CharacterFeaturedAdapter : RecyclerView.Adapter<CharacterFeaturedAdapter.ViewHolder>() {
+class ThemeAdapter(
+    private val  listener: Listener
+) : RecyclerView.Adapter<ThemeAdapter.ViewHolder>() {
 
-    private val items: ArrayList<CharacterModel> = arrayListOf()
+    private val items: ArrayList<ThemeModel> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_character,
+                R.layout.item_theme,
                 parent,
                 false
             )
@@ -30,20 +33,25 @@ class CharacterFeaturedAdapter : RecyclerView.Adapter<CharacterFeaturedAdapter.V
         holder.bind(items[position])
     }
 
-    fun loadItems(items: List<CharacterModel>) {
+    fun loadItems(items: List<ThemeModel>) {
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(
-        private val viewDataBinding: ItemCharacterBinding
+        private val viewDataBinding: ItemThemeBinding
     ) : RecyclerView.ViewHolder(viewDataBinding.root) {
 
-        fun bind(data: CharacterModel) {
+        fun bind(data: ThemeModel) {
             viewDataBinding.run {
                 model = data
+                root.setOnClickListener { listener.onClickListener(data) }
                 executePendingBindings()
             }
         }
+    }
+
+    interface Listener {
+        fun onClickListener(themeModel: ThemeModel)
     }
 }
