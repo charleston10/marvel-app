@@ -23,5 +23,9 @@
         android:id="@+id/listFragment"
         android:name="com.charleston.marvelapp.screens.list.ListFragment"
         android:label="ListFragment"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list">
+        <argument
+            android:name="themeSelected"
+            app:argType="com.charleston.domain.model.ThemeModel" />
+    </fragment>
 </navigation>

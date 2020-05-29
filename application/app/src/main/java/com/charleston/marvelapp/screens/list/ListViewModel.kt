@@ -16,9 +16,8 @@ class ListViewModel(
 
     private var coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
-    private val listCharacterMutableLiveData = MutableLiveData<List<CharacterModel>>()
-
-    val listCharacterLiveData = listCharacterMutableLiveData
+    private val listMutableLiveData = MutableLiveData<List<CharacterModel>>()
+    val listLiveData = listMutableLiveData
 
     fun loadList(themeSelected: ThemeModel) {
         when (themeSelected.id) {
@@ -29,7 +28,7 @@ class ListViewModel(
     private fun listCharacters() {
         coroutineScope.launch {
             val list = listCharactersUseCase.execute()
-            listCharacterLiveData.postValue(list)
+            listMutableLiveData.postValue(list)
         }
     }
 }

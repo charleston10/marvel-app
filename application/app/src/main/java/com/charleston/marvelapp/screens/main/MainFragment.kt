@@ -61,6 +61,9 @@ class MainFragment : Fragment(R.layout.fragment_main),
     }
 
     private fun startList(themeModel: ThemeModel) {
-        findNavController().navigate(R.id.action_mainFragment_to_listFragment)
+        view?.post {
+            val action = MainFragmentDirections.actionMainFragmentToListFragment(themeModel)
+            findNavController().navigate(action)
+        }
     }
 }
