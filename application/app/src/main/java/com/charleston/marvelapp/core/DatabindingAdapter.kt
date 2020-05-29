@@ -1,4 +1,4 @@
-package com.charleston.marvelapp.databinding
+package com.charleston.marvelapp.core
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
