@@ -11,8 +11,8 @@ class MarvelRepository(
 
     private val mapper = CharacterMapper()
 
-    override suspend fun getCharacters(page: Int, limit: Int): List<CharacterModel> {
-        val list = cloud.getCharacters(page, limit).data.characters
+    override suspend fun getCharacters(offset: Int, limit: Int): List<CharacterModel> {
+        val list = cloud.getCharacters(offset, limit).data.characters
         return mapper.transform(list)
     }
 }

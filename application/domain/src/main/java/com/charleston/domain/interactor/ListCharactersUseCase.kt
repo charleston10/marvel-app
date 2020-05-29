@@ -8,6 +8,6 @@ class ListCharactersUseCase constructor(
 ) {
 
     suspend fun execute(): List<CharacterModel> {
-        return repository.getCharacters(page = 1, limit = 20)
+        return repository.getCharacters(offset = 1, limit = 20)
     }
 }

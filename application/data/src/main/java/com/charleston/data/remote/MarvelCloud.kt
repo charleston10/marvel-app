@@ -7,9 +7,9 @@ class MarvelCloud(
     private val api: MarvelApi
 ) {
 
-    suspend fun getCharacters(page: Int, limit: Int): ObjectResponse {
+    suspend fun getCharacters(offset: Int, limit: Int): ObjectResponse {
         return api.getCharacters(
-            page = page,
+            offset = offset,
             limit = limit,
             order = "name"
         )

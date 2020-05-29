@@ -8,7 +8,7 @@ interface MarvelApi {
 
     @GET("/v1/public/characters")
     suspend fun getCharacters(
-        @Query("offset") page: Int,
+        @Query("offset") offset: Int,
         @Query("limit") limit: Int,
         @Query("orderBy") order: String
     ): ObjectResponse
