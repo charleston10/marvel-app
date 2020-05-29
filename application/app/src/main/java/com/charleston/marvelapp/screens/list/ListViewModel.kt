@@ -21,7 +21,7 @@ class ListViewModel(
 
     fun loadList(themeSelected: ThemeModel) {
         when (themeSelected.id) {
-            0 -> listCharacters()
+            1 -> listCharacters()
         }
     }
 
