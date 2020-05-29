@@ -10,7 +10,7 @@ class MarvelLocal(
     private val context: Context
 ) {
 
-    suspend fun getThemes(): List<ThemeEntity> {
+    fun getThemes(): List<ThemeEntity> {
         val inputStream = context.resources.openRawResource(R.raw.marvel_themes)
         val json = IOUtils.toString(inputStream)
         IOUtils.closeQuietly(inputStream)
