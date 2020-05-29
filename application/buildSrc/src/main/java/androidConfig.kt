@@ -2,7 +2,7 @@ object AndroidConfig {
 
     val applicationId = "com.charleston.marvelapp"
 
-    val compileSdk = 28
+    val compileSdk = 29
     val minSdk = 21
     val targetSdk = compileSdk
 

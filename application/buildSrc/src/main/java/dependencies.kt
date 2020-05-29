@@ -38,6 +38,7 @@ object Dependencies {
     val squareMoshi = "com.squareup.moshi:moshi:${Versions.squareMoshi}"
     val squareMoshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.squareMoshi}"
     val squareMoshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.squareMoshi}"
+    val glide = "com.github.bumptech.glide:glide:4.9.0"
 }
 
 object TestDependencies {
@@ -56,7 +57,8 @@ object AndroidModule {
         Dependencies.navigationFragment,
         Dependencies.navigationUi,
         Dependencies.koin,
-        Dependencies.koinViewModel
+        Dependencies.koinViewModel,
+        Dependencies.glide
     )
 
     val data = listOf(
