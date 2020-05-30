@@ -34,6 +34,7 @@ class ThemeAdapter(
     }
 
     fun loadItems(items: List<ThemeModel>) {
+        this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
     }
