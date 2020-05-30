@@ -33,18 +33,22 @@ class DataBindingAdapter {
         @JvmStatic
         @BindingAdapter(value = ["bindShowing"])
         fun bindShowing(view: TextView, total: Int?) {
-            view.text = "Showing $total item(s)"
+            total?.let {
+                view.text = "Showing $it item(s)"
+            }
         }
 
         @JvmStatic
         @BindingAdapter(value = ["bindTextWatcher"])
-        fun bindTextWatcher(view: EditText, textWatcher: TextWatcher) {
-            view.addTextChangedListener(textWatcher)
+        fun bindTextWatcher(view: EditText, textWatcher: TextWatcher?) {
+            textWatcher?.let {
+                view.addTextChangedListener(it)
+            }
         }
 
         @JvmStatic
         @BindingAdapter(value = ["bindTextResult"])
-        fun bindTextResult(view: TextView, themeName: String) {
+        fun bindTextResult(view: TextView, themeName: String?) {
             view.text = "List of items theme $themeName"
         }
     }

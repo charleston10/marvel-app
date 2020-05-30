@@ -9,6 +9,8 @@
 
         <import type="com.charleston.marvelapp.screens.list.ListState" />
 
+        <import type="com.charleston.domain.model.ThemeEnum" />
+
         <variable
             name="vm"
             type="com.charleston.marvelapp.screens.list.ListViewModel" />
@@ -29,48 +31,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <include
+            android:id="@+id/container_search"
+            layout="@layout/container_list_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Type here for search items by name"
-            app:endIconMode="clear_text"
+            android:visibility="@{vm.themeSelected.type == ThemeEnum.CHARACTERS  ? View.VISIBLE: View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar3">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:bindTextWatcher="@{vm.watcherSearch}" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="Pesquisando dados"
-            android:visibility="@{vm.state instanceof ListState.LoadingSearch ? View.VISIBLE: View.INVISIBLE}"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            tools:visibility="visible" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:visibility="@{vm.state instanceof ListState.LoadingSearch ? View.VISIBLE: View.INVISIBLE}"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
         <include
             android:id="@+id/container_result"
@@ -82,20 +51,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/container_search"
             app:vm="@{vm}" />
 
         <include
             android:id="@+id/container_loading"
             layout="@layout/container_list_loading"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="@{vm.state instanceof ListState.Loading ? View.VISIBLE: View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar3"
             tools:visibility="gone" />
 
         <include
@@ -108,7 +76,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
