@@ -6,16 +6,15 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.charleston.domain.interactor.ListCharactersUseCase
+import com.charleston.domain.interactor.ListUseCase
 import com.charleston.domain.model.ItemModel
-import com.charleston.domain.model.ThemeEnum
 import com.charleston.domain.model.ThemeModel
 import com.charleston.marvelapp.core.SingleLiveEvent
 import kotlinx.coroutines.*
 import java.lang.Exception
 
 class ListViewModel(
-    private val listCharactersUseCase: ListCharactersUseCase
+    private val listUseCase: ListUseCase
 ) : ViewModel() {
 
     private var coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
@@ -44,7 +43,7 @@ class ListViewModel(
         this.themeSelected = themeSelected
 
         if (!initialized) {
-            loadListByTheme()
+            loadListItem()
             initialized = true
         }
     }
@@ -53,30 +52,16 @@ class ListViewModel(
         if (!breakPagination && state.get() !is ListState.LoadingPage) {
             page++
             isPagination = true
-            loadListByTheme()
+            loadListItem()
         }
     }
 
-    private fun loadListByTheme() {
-        when (themeSelected.type) {
-            ThemeEnum.CHARACTERS -> {
-                listCharacters()
-            }
-            ThemeEnum.SERIES -> {
-                listCharacters()
-            }
-            ThemeEnum.COMICS -> {
-                listCharacters()
-            }
-        }
-    }
-
-    private fun listCharacters() {
+    private fun loadListItem() {
         handlerLoading()
 
         try {
             coroutineScope.launch {
-                val list = listCharactersUseCase.execute(page, perPage, nameSearch)
+                val list = listUseCase.execute(page, perPage, nameSearch, themeSelected)
                 handlerSuccess(list)
             }
         } catch (e: Exception) {
@@ -121,7 +106,7 @@ class ListViewModel(
     private fun clearSearch(){
         searchReset()
         nameSearch = ""
-        loadListByTheme()
+        loadListItem()
     }
 
     val watcherSearch = object : TextWatcher {
@@ -144,7 +129,7 @@ class ListViewModel(
                 delay(1000)  //debounce timeOut
                 if (searchText != searchFor) return@launch
                 nameSearch = searchText
-                loadListByTheme()
+                loadListItem()
             }
         }
 
