@@ -9,7 +9,7 @@ import com.charleston.marvelapp.R
 import com.charleston.marvelapp.databinding.ItemListBinding
 
 class ListAdapter(
-    private val  listener: Listener
+    private val listener: Listener
 ) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     private val items: ArrayList<ItemModel> = arrayListOf()
@@ -35,6 +35,11 @@ class ListAdapter(
 
     fun loadItems(items: List<ItemModel>) {
         this.items.addAll(items)
+        notifyDataSetChanged()
+    }
+
+    fun clear() {
+        this.items.clear()
         notifyDataSetChanged()
     }
 
