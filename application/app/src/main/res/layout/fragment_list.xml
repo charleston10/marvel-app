@@ -39,7 +39,8 @@
             android:visibility="@{vm.themeSelected.type == ThemeEnum.CHARACTERS  ? View.VISIBLE: View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
+            app:layout_constraintTop_toBottomOf="@+id/progressBar3"
+            app:vm="@{vm}" />
 
         <include
             android:id="@+id/container_result"

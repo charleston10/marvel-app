@@ -1,7 +1,5 @@
 package com.charleston.marvelapp.screens.list
 
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
@@ -57,6 +55,28 @@ class ListViewModel(
         }
     }
 
+    fun search(searchText: String, searchFor: String) {
+        coroutineScope.launch {
+            delay(2000)  //debounce timeOut
+            if (searchText != searchFor) return@launch
+            nameSearch = searchText
+            loadListItem()
+        }
+    }
+
+    fun searchReset() {
+        page = 1
+        breakPagination = false
+        listItem.clear()
+        clearListMutableSingleLiveEvent.value = true
+    }
+
+    fun clearSearch() {
+        searchReset()
+        nameSearch = ""
+        loadListItem()
+    }
+
     private fun loadListItem() {
         handlerLoading()
 
@@ -95,46 +115,5 @@ class ListViewModel(
         if (total < perPage) {
             breakPagination = true
         }
-    }
-
-    private fun searchReset() {
-        page = 1
-        breakPagination = false
-        listItem.clear()
-        clearListMutableSingleLiveEvent.value = true
-    }
-
-    private fun clearSearch(){
-        searchReset()
-        nameSearch = ""
-        loadListItem()
-    }
-
-    val watcherSearch = object : TextWatcher {
-        private var searchFor = ""
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            val searchText = s.toString().trim()
-            if (searchText == searchFor)
-                return
-
-            if (searchFor.isEmpty() && searchText.isNotBlank()) {//conditional for know first search (clear list)
-                searchReset()
-            } else if (searchText.isBlank()) {//conditional for edit text was cleared
-                clearSearch()
-            }
-
-            searchFor = searchText
-
-            coroutineScope.launch {
-                delay(1000)  //debounce timeOut
-                if (searchText != searchFor) return@launch
-                nameSearch = searchText
-                loadListItem()
-            }
-        }
-
-        override fun afterTextChanged(s: Editable?) = Unit
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
     }
 }

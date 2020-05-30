@@ -1,6 +1,8 @@
 package com.charleston.marvelapp.screens.list
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.charleston.domain.model.ItemModel
 import com.charleston.marvelapp.databinding.FragmentListBinding
 import com.charleston.marvelapp.extensions.divisorLastList
 import kotlinx.android.synthetic.main.container_list_result.*
+import kotlinx.android.synthetic.main.container_list_search.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ListFragment : Fragment(), ListAdapter.Listener {
@@ -36,6 +39,7 @@ class ListFragment : Fragment(), ListAdapter.Listener {
         observerViewModel()
         initialize()
         setupList()
+        bindSearch()
     }
 
     override fun onClickListener(model: ItemModel) {
@@ -58,7 +62,9 @@ class ListFragment : Fragment(), ListAdapter.Listener {
 
             clearListSingleLiveEvent.observe(viewLifecycleOwner,
                 Observer {
-                    if (it) listAdapter.clear()
+                    if (it) {
+                        listAdapter.clear()
+                    }
                 })
         }
     }
@@ -90,5 +96,33 @@ class ListFragment : Fragment(), ListAdapter.Listener {
                 }
             }
         }
+    }
+
+    private fun bindSearch() {
+        val textWatcher = object : TextWatcher {
+            private var searchFor = ""
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val searchText = s.toString().trim()
+                if (searchText == searchFor)
+                    return
+
+                if (searchText.length == 1) {//conditional for know first search (clear list)
+                    viewModel.searchReset()
+                } else if (searchText.isBlank()) {//conditional for edit text was cleared
+                    viewModel.clearSearch()
+                    return
+                }
+
+                searchFor = searchText
+                viewModel.search(searchText, searchFor)
+            }
+
+            override fun afterTextChanged(s: Editable?) = Unit
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) =
+                Unit
+        }
+
+        txt_search.addTextChangedListener(textWatcher)
     }
 }

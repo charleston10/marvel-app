@@ -32,9 +32,9 @@
             app:layout_constraintTop_toBottomOf="@+id/progressBar3">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:bindTextWatcher="@{vm.watcherSearch}" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
