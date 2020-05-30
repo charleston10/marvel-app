@@ -37,7 +37,7 @@
                     android:scaleType="centerCrop"
                     app:bindImageUrl="@{model.imageUrl}"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/example_background" />
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <ImageView
                     android:id="@+id/imageView2"

@@ -1,6 +1,7 @@
 package com.charleston.marvelapp.core
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -25,6 +26,12 @@ class DataBindingAdapter {
                     )
                     .into(view)
             }
+        }
+
+        @JvmStatic
+        @BindingAdapter(value = ["bindShowing"])
+        fun bindShowing(view: TextView, total: Int?) {
+            view.text = "Showing $total item(s) result"
         }
     }
 }

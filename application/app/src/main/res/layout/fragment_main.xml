@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:layout_height="200dp"
-        tools:listitem="@layout/item_character" />
+        tools:listitem="@layout/item_theme" />
 
     <View
         android:layout_width="4dp"
