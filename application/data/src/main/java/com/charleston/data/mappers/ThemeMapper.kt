@@ -16,9 +16,10 @@ class ThemeMapper : IMapper<ThemeEntity, ThemeModel> {
 
     private fun getType(id: Int): ThemeEnum {
         return when (id) {
-            0 -> ThemeEnum.CHARACTERS
-            1 -> ThemeEnum.SERIES
-            else -> ThemeEnum.COMICS
+            1 -> ThemeEnum.CHARACTERS
+            2 -> ThemeEnum.SERIES
+            3 -> ThemeEnum.COMICS
+            else -> ThemeEnum.CHARACTERS
         }
     }
 }
