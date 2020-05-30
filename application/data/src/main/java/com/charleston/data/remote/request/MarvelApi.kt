@@ -3,6 +3,7 @@ package com.charleston.data.remote.request
 import com.charleston.data.remote.response.ObjectResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface MarvelApi {
 
@@ -10,8 +11,10 @@ interface MarvelApi {
     suspend fun getCharacters(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
-        @Query("orderBy") order: String
+        @Query("orderBy") order: String,
+        @QueryMap options: Map<String, String>
     ): ObjectResponse
+
 
     @GET("/v1/public/comics")
     suspend fun getComics(

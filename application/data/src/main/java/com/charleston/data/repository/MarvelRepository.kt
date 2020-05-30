@@ -16,8 +16,12 @@ class MarvelRepository(
     private val characterMapper = CharacterMapper()
     private val themeMapper = ThemeMapper()
 
-    override suspend fun getCharacters(offset: Int, limit: Int): List<ItemModel> {
-        val list = cloud.getCharacters(offset, limit).data.characters
+    override suspend fun getCharacters(
+        offset: Int,
+        limit: Int,
+        queryName: String?
+    ): List<ItemModel> {
+        val list = cloud.getCharacters(offset, limit, queryName).data.characters
         return characterMapper.transform(list)
     }
 

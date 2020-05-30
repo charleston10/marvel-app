@@ -7,11 +7,18 @@ class MarvelCloud(
     private val api: MarvelApi
 ) {
 
-    suspend fun getCharacters(offset: Int, limit: Int): ObjectResponse {
+    suspend fun getCharacters(offset: Int, limit: Int, queryName: String?): ObjectResponse {
+        var options: Map<String, String> = mapOf()
+
+        if (queryName != null && queryName.isNotBlank()) {
+            options = mapOf("nameStartsWith" to queryName)
+        }
+
         return api.getCharacters(
             offset = offset,
             limit = limit,
-            order = "name"
+            order = "name",
+            options = options
         )
     }
 }
