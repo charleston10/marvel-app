@@ -1,6 +1,7 @@
 package com.charleston.data.remote.request
 
 import com.charleston.data.remote.response.CharacterResponse
+import com.charleston.data.remote.response.ComicResponse
 import com.charleston.data.remote.response.ObjectResponse
 import com.charleston.data.remote.response.SerieResponse
 import retrofit2.http.GET
@@ -23,4 +24,11 @@ interface MarvelApi {
         @Query("limit") limit: Int,
         @QueryMap options: Map<String, String>
     ): ObjectResponse<SerieResponse>
+
+    @GET("/v1/public/comics")
+    suspend fun getComics(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+        @QueryMap options: Map<String, String>
+    ): ObjectResponse<ComicResponse>
 }
