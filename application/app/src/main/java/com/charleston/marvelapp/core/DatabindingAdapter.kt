@@ -1,5 +1,7 @@
 package com.charleston.marvelapp.core
 
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -32,6 +34,12 @@ class DataBindingAdapter {
         @BindingAdapter(value = ["bindShowing"])
         fun bindShowing(view: TextView, total: Int?) {
             view.text = "Showing $total item(s) result"
+        }
+
+        @JvmStatic
+        @BindingAdapter(value = ["bindTextWatcher"])
+        fun bindTextWatcher(view: EditText, textWatcher: TextWatcher) {
+            view.addTextChangedListener(textWatcher)
         }
     }
 }
