@@ -6,7 +6,7 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.charleston.domain.interactor.ListUseCase
+import com.charleston.domain.interactor.ListItemUseCase
 import com.charleston.domain.model.ItemModel
 import com.charleston.domain.model.ThemeModel
 import com.charleston.marvelapp.core.SingleLiveEvent
@@ -14,7 +14,7 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 class ListViewModel(
-    private val listUseCase: ListUseCase
+    private val listUseCase: ListItemUseCase
 ) : ViewModel() {
 
     private var coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())

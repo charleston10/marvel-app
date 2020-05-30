@@ -5,7 +5,7 @@ import com.charleston.domain.model.ThemeEnum
 import com.charleston.domain.model.ThemeModel
 import com.charleston.domain.repository.IMarvelRepository
 
-class ListUseCase constructor(
+class ListItemUseCase constructor(
     private val repository: IMarvelRepository
 ) {
 
@@ -17,7 +17,7 @@ class ListUseCase constructor(
     ): List<ItemModel> {
         return when (themeSelected.type) {
             ThemeEnum.CHARACTERS -> getCharacters(page, perPage, queryName)
-            ThemeEnum.SERIES -> getCharacters(page, perPage, queryName)
+            ThemeEnum.SERIES -> getSeries(page, perPage, queryName)
             ThemeEnum.COMICS -> getCharacters(page, perPage, queryName)
         }
     }
@@ -28,6 +28,18 @@ class ListUseCase constructor(
         queryName: String?
     ): List<ItemModel> {
         return repository.getCharacters(
+            offset = page * perPage,
+            limit = perPage,
+            queryName = queryName
+        )
+    }
+
+    private suspend fun getSeries(
+        page: Int,
+        perPage: Int,
+        queryName: String?
+    ): List<ItemModel> {
+        return repository.getSeries(
             offset = page * perPage,
             limit = perPage,
             queryName = queryName
