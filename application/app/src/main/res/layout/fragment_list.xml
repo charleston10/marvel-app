@@ -37,7 +37,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:hint="Type here for search items"
+            android:hint="Type here for search items by name"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,17 +45,18 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:bindTextWatcher="@{vm.watcherSearch}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="Pesquisando dados"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/progressBar"
+            android:visibility="@{vm.state instanceof ListState.LoadingSearch ? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
             tools:visibility="visible" />
@@ -64,9 +65,10 @@
             android:id="@+id/progressBar"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+            android:visibility="@{vm.state instanceof ListState.LoadingSearch ? View.VISIBLE: View.INVISIBLE}"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
             tools:visibility="visible" />
 
@@ -75,7 +77,7 @@
             layout="@layout/container_list_result"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:visibility="@{vm.state instanceof ListState.Success || vm.state instanceof ListState.LoadingPage  ? View.VISIBLE: View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

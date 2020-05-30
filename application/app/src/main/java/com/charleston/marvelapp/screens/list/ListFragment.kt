@@ -55,6 +55,11 @@ class ListFragment : Fragment(), ListAdapter.Listener {
                 Observer {
                     loadList(it)
                 })
+
+            clearListSingleLiveEvent.observe(viewLifecycleOwner,
+                Observer {
+                    if (it) listAdapter.clear()
+                })
         }
     }
 

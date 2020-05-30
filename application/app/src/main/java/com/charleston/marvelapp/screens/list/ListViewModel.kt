@@ -1,5 +1,7 @@
 package com.charleston.marvelapp.screens.list
 
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
@@ -8,10 +10,8 @@ import com.charleston.domain.interactor.ListCharactersUseCase
 import com.charleston.domain.model.ItemModel
 import com.charleston.domain.model.ThemeEnum
 import com.charleston.domain.model.ThemeModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import com.charleston.marvelapp.core.SingleLiveEvent
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 class ListViewModel(
@@ -23,12 +23,19 @@ class ListViewModel(
     private lateinit var themeSelected: ThemeModel
 
     private var initialized = false
+
     private var page = 1
     private var perPage = 10
+    private var isPagination = false
     private var breakPagination = false
+
+    private var nameSearch = ""
 
     private val listMutableLiveData = MutableLiveData<List<ItemModel>>()
     val listLiveData = listMutableLiveData
+
+    private val clearListMutableSingleLiveEvent = SingleLiveEvent<Boolean>()
+    val clearListSingleLiveEvent = clearListMutableSingleLiveEvent
 
     val totalShowing = ObservableInt()
     val state = ObservableField<ListState>()
@@ -45,6 +52,7 @@ class ListViewModel(
     fun nextPage() {
         if (!breakPagination && state.get() !is ListState.LoadingPage) {
             page++
+            isPagination = true
             loadListByTheme()
         }
     }
@@ -64,12 +72,11 @@ class ListViewModel(
     }
 
     private fun listCharacters() {
-        if (listItem.isEmpty()) state.set(ListState.Loading)
-        else state.set(ListState.LoadingPage)
+        handlerLoading()
 
         try {
             coroutineScope.launch {
-                val list = listCharactersUseCase.execute(page, perPage)
+                val list = listCharactersUseCase.execute(page, perPage, nameSearch)
                 handlerSuccess(list)
             }
         } catch (e: Exception) {
@@ -77,17 +84,21 @@ class ListViewModel(
         }
     }
 
-    private fun handlerSuccess(list: List<ItemModel>) {
-        if (list.isNotEmpty()) {
-            listItem.addAll(list)
-            listMutableLiveData.postValue(list)
-            state.set(ListState.Success)
-            treatPage(list.size)
-        } else {
-            state.set(ListState.Empty)
+    private fun handlerLoading() {
+        when {
+            isPagination -> state.set(ListState.LoadingPage)
+            nameSearch.isNotBlank() -> state.set(ListState.LoadingSearch)
+            listItem.isEmpty() -> state.set(ListState.Loading)
         }
+    }
 
+    private fun handlerSuccess(list: List<ItemModel>) {
+        listItem.addAll(list)
+        listMutableLiveData.postValue(list)
+        state.set(ListState.Success)
+        treatPage(list.size)
         totalShowing.set(listItem.size)
+        isPagination = false
     }
 
     /**
@@ -98,5 +109,46 @@ class ListViewModel(
         if (total < perPage) {
             breakPagination = true
         }
+    }
+
+    private fun searchReset() {
+        page = 1
+        breakPagination = false
+        listItem.clear()
+        clearListMutableSingleLiveEvent.value = true
+    }
+
+    private fun clearSearch(){
+        searchReset()
+        nameSearch = ""
+        loadListByTheme()
+    }
+
+    val watcherSearch = object : TextWatcher {
+        private var searchFor = ""
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            val searchText = s.toString().trim()
+            if (searchText == searchFor)
+                return
+
+            if (searchFor.isEmpty() && searchText.isNotBlank()) {//conditional for know first search (clear list)
+                searchReset()
+            } else if (searchText.isBlank()) {//conditional for edit text was cleared
+                clearSearch()
+            }
+
+            searchFor = searchText
+
+            coroutineScope.launch {
+                delay(1000)  //debounce timeOut
+                if (searchText != searchFor) return@launch
+                nameSearch = searchText
+                loadListByTheme()
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) = Unit
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
     }
 }
