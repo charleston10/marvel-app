@@ -85,7 +85,7 @@ class ListFragment : Fragment(), ListAdapter.Listener {
                 val visiblePosition =
                     layoutManager.findLastCompletelyVisibleItemPosition()
 
-                if (visiblePosition == listAdapter.itemCount - 4) {
+                if (visiblePosition == listAdapter.itemCount - 10) {
                     viewModel.nextPage()
                 }
             }

@@ -24,7 +24,7 @@ class ListViewModel(
     private var initialized = false
 
     private var page = 1
-    private var perPage = 10
+    private var perPage = 30
     private var isPagination = false
     private var breakPagination = false
 
