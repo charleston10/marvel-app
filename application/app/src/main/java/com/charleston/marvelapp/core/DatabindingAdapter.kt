@@ -33,13 +33,19 @@ class DataBindingAdapter {
         @JvmStatic
         @BindingAdapter(value = ["bindShowing"])
         fun bindShowing(view: TextView, total: Int?) {
-            view.text = "Showing $total item(s) result"
+            view.text = "Showing $total item(s)"
         }
 
         @JvmStatic
         @BindingAdapter(value = ["bindTextWatcher"])
         fun bindTextWatcher(view: EditText, textWatcher: TextWatcher) {
             view.addTextChangedListener(textWatcher)
+        }
+
+        @JvmStatic
+        @BindingAdapter(value = ["bindTextResult"])
+        fun bindTextResult(view: TextView, themeName: String) {
+            view.text = "List of items theme $themeName"
         }
     }
 }

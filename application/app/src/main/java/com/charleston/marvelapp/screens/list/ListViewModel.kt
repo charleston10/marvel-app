@@ -19,7 +19,8 @@ class ListViewModel(
 
     private var coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val listItem: ArrayList<ItemModel> = arrayListOf()
-    private lateinit var themeSelected: ThemeModel
+
+    lateinit var themeSelected: ThemeModel
 
     private var initialized = false
 

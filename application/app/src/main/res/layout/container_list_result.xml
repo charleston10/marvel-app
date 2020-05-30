@@ -16,15 +16,18 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="List of items by your theme selected"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
+            app:bindTextResult="@{vm.themeSelected.name}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            tools:text="List of items by your theme selected" />
 
         <TextView
             android:id="@+id/textView7"
