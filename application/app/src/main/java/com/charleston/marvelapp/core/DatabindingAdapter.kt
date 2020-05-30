@@ -49,7 +49,13 @@ class DataBindingAdapter {
         @JvmStatic
         @BindingAdapter(value = ["bindTextResult"])
         fun bindTextResult(view: TextView, themeName: String?) {
-            view.text = "List of items theme $themeName"
+            view.text = "List of items theme ${themeName?.toLowerCase()}"
+        }
+
+        @JvmStatic
+        @BindingAdapter(value = ["bindTextLoading"])
+        fun bindTextLoading(view: TextView, themeName: String?) {
+            view.text = "Loading ${themeName?.toLowerCase()}"
         }
     }
 }
