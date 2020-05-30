@@ -1,12 +1,12 @@
 package com.charleston.data.mappers
 
 import com.charleston.data.remote.response.CharacterResponse
-import com.charleston.domain.model.CharacterModel
+import com.charleston.domain.model.ItemModel
 
-class CharacterMapper : IMapper<CharacterResponse, CharacterModel> {
+class CharacterMapper : IMapper<CharacterResponse, ItemModel> {
 
-    override fun transform(entity: CharacterResponse): CharacterModel {
-        return CharacterModel(
+    override fun transform(entity: CharacterResponse): ItemModel {
+        return ItemModel(
             name = entity.name,
             description = entity.description,
             imageUrl = getImageURI(entity.thumbnail.path, entity.thumbnail.extension)
