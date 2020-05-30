@@ -7,7 +7,7 @@ class ListCharactersUseCase constructor(
     private val repository: IMarvelRepository
 ) {
 
-    suspend fun execute(): List<ItemModel> {
-        return repository.getCharacters(offset = 1, limit = 20)
+    suspend fun execute(page: Int, perPage: Int): List<ItemModel> {
+        return repository.getCharacters(offset = page * perPage, limit = perPage)
     }
 }

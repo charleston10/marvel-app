@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.charleston.domain.model.ItemModel
 import com.charleston.marvelapp.databinding.FragmentListBinding
 import com.charleston.marvelapp.extensions.divisorLastList
-import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.container_list_result.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ListFragment : Fragment(), ListAdapter.Listener {
@@ -59,16 +59,31 @@ class ListFragment : Fragment(), ListAdapter.Listener {
     }
 
     private fun setupList() {
+        val linearLayoutManager = LinearLayoutManager(context)
+
         list.run {
-            layoutManager =
-                LinearLayoutManager(this@ListFragment.context, RecyclerView.VERTICAL, false)
+            layoutManager = linearLayoutManager
             adapter = listAdapter
         }
 
         list.addItemDecoration(list.context.divisorLastList())
+        list.addOnScrollListener(setupPagination(linearLayoutManager))
     }
 
     private fun loadList(list: List<ItemModel>) {
         listAdapter.loadItems(list)
+    }
+
+    private fun setupPagination(layoutManager: LinearLayoutManager): RecyclerView.OnScrollListener {
+        return object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val visiblePosition =
+                    layoutManager.findLastCompletelyVisibleItemPosition()
+
+                if (visiblePosition == listAdapter.itemCount - 4) {
+                    viewModel.nextPage()
+                }
+            }
+        }
     }
 }
