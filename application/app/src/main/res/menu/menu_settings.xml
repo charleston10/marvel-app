@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/menu_item_dark_mode"
-        android:title="Theme Dark"
+        android:title="Dark theme"
         app:actionViewClass="androidx.appcompat.widget.SwitchCompat" />
 </menu>
