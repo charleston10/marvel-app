@@ -73,6 +73,7 @@ Shows information such as series, characters, events and comics
 </tr>
 </table>
 
+## Base project
 
 - **Multilayer structure:**
 Code organization inspired by DDD and Clean Architecture focused on codebase scalability.
