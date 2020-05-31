@@ -8,9 +8,10 @@
     <color name="white">#fff</color>
 
 
-    <!-- https://material.io/design/color/dark-theme.html#properties -->
-    <color name="darkGrey">#121212</color>
-    <color name="darkPrimary">#1F1B24</color>
+    <color name="darkBackground">#32343e</color>
+    <color name="darkPrimary">#404c54</color>
+    <color name="darkAccent">#446b6a</color>
+    <color name="darkStatusBar">#32343e</color>
 
     <color name="backgroundTitle">#CCAEAEAE</color>
 </resources>

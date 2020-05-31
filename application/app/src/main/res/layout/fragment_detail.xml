@@ -57,7 +57,7 @@
             tools:text="Donec a mollis dolor. Aenean iaculis ipsum vel malesuada congue. Proin condimentum semper interdum. Nunc id semper mi. Suspendisse porttitor porta diam eu laoreet. Fusce at diam tellus. Praesent volutpat est eros, a semper metus pulvinar sed. Donec dapibus nisl ac ex mollis imperdiet. Fusce id facilisis nisi, nec dictum eros. Aenean eget facilisis mi." />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/AppTheme.ButtonOutline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

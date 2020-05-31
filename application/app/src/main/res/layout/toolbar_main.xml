@@ -19,6 +19,7 @@
 
         <ImageView
             android:id="@+id/imageView3"
+            style="@style/Icon"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="15dp"
@@ -31,17 +32,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="MRVL"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <ImageView
             android:id="@+id/iv_menu"
+            style="@style/Icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="12dp"
