@@ -1,4 +1,4 @@
-package com.charleston.marvelapp
+package com.charleston.marvelapp.di
 
 import com.charleston.marvelapp.screens.list.ListViewModel
 import com.charleston.marvelapp.screens.main.MainViewModel

@@ -2,6 +2,7 @@ package com.charleston.marvelapp
 
 import com.charleston.data.DataModule
 import com.charleston.domain.DomainModule
+import com.charleston.marvelapp.di.AppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
