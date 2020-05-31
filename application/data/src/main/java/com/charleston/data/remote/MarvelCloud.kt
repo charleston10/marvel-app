@@ -1,10 +1,7 @@
 package com.charleston.data.remote
 
 import com.charleston.data.remote.request.MarvelApi
-import com.charleston.data.remote.response.CharacterResponse
-import com.charleston.data.remote.response.ComicResponse
-import com.charleston.data.remote.response.ObjectResponse
-import com.charleston.data.remote.response.SerieResponse
+import com.charleston.data.remote.response.*
 
 class MarvelCloud(
     private val api: MarvelApi
@@ -62,6 +59,14 @@ class MarvelCloud(
             offset = offset,
             limit = limit,
             options = options
+        )
+    }
+
+    suspend fun getEvents(): ObjectResponse<EventResponse> {
+        return api.getEvents(
+            offset = 0,
+            limit = 30,
+            order = "-startDate"
         )
     }
 }

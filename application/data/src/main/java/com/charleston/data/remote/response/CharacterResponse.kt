@@ -1,12 +1,11 @@
 package com.charleston.data.remote.response
 
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import com.squareup.moshi.Json
 
 data class CharacterResponse(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("resourceURI") val resourceURI: String,
-    @SerializedName("thumbnail") val thumbnail: ThumbnailResponse
-) : Serializable
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
+    @Json(name = "description") val description: String,
+    @Json(name = "resourceURI") val resourceURI: String,
+    @Json(name = "thumbnail") val thumbnail: ThumbnailResponse
+)

@@ -1,9 +1,6 @@
 package com.charleston.data.remote.request
 
-import com.charleston.data.remote.response.CharacterResponse
-import com.charleston.data.remote.response.ComicResponse
-import com.charleston.data.remote.response.ObjectResponse
-import com.charleston.data.remote.response.SerieResponse
+import com.charleston.data.remote.response.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
@@ -31,4 +28,11 @@ interface MarvelApi {
         @Query("limit") limit: Int,
         @QueryMap options: Map<String, String>
     ): ObjectResponse<ComicResponse>
+
+    @GET("/v1/public/events")
+    suspend fun getEvents(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+        @Query("orderBy") order: String
+    ): ObjectResponse<EventResponse>
 }

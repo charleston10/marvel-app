@@ -62,7 +62,7 @@ class HttpClient(private val application: Application) {
         return MoshiConverterFactory.create(
             Moshi.Builder()
                 .add(KotlinJsonAdapterFactory())
-                .add(Date::class.java, Rfc3339DateJsonAdapter())
+                .add(Date::class.java, DateAdapter())
                 .build()
         )
     }

@@ -8,4 +8,5 @@ interface IMarvelRepository {
     suspend fun getCharacters(offset: Int, limit: Int, queryName: String?): List<ItemModel>
     suspend fun getSeries(offset: Int, limit: Int, queryName: String?): List<ItemModel>
     suspend fun getComics(offset: Int, limit: Int, queryName: String?): List<ItemModel>
+    suspend fun getEvents(): List<ItemModel>
 }

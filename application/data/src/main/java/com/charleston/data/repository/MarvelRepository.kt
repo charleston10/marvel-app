@@ -1,10 +1,7 @@
 package com.charleston.data.repository
 
 import com.charleston.data.local.MarvelLocal
-import com.charleston.data.mappers.CharacterMapper
-import com.charleston.data.mappers.ComicMapper
-import com.charleston.data.mappers.SerieMapper
-import com.charleston.data.mappers.ThemeMapper
+import com.charleston.data.mappers.*
 import com.charleston.data.remote.MarvelCloud
 import com.charleston.domain.model.ItemModel
 import com.charleston.domain.model.ThemeModel
@@ -19,6 +16,7 @@ class MarvelRepository(
     private val characterMapper = CharacterMapper()
     private val serieMapper = SerieMapper()
     private val comicMapper = ComicMapper()
+    private val eventMapper = EventMapper()
 
     override suspend fun getThemes(): List<ThemeModel> {
         val list = local.getThemes()
@@ -46,5 +44,10 @@ class MarvelRepository(
     override suspend fun getComics(offset: Int, limit: Int, queryName: String?): List<ItemModel> {
         val list = cloud.getComics(offset, limit, queryName).data.results
         return comicMapper.transform(list)
+    }
+
+    override suspend fun getEvents(): List<ItemModel> {
+        val list = cloud.getEvents().data.results
+        return eventMapper.transform(list)
     }
 }

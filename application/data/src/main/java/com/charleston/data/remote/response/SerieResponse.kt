@@ -1,11 +1,10 @@
 package com.charleston.data.remote.response
 
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import com.squareup.moshi.Json
 
 data class SerieResponse(
-    @SerializedName("id") val id: Int,
-    @SerializedName("title") val title: String,
-    @SerializedName("description") val description: String?,
-    @SerializedName("thumbnail") val thumbnail: ThumbnailResponse
-) : Serializable
+    @Json(name = "id") val id: Int,
+    @Json(name = "title") val title: String,
+    @Json(name = "description") val description: String?,
+    @Json(name = "thumbnail") val thumbnail: ThumbnailResponse
+)

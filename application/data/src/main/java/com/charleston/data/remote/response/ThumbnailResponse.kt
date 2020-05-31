@@ -1,9 +1,8 @@
 package com.charleston.data.remote.response
 
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import com.squareup.moshi.Json
 
 data class ThumbnailResponse(
-    @SerializedName("path") val path: String,
-    @SerializedName("extension") val extension: String
-) : Serializable
+    @Json(name = "path") val path: String,
+    @Json(name = "extension") val extension: String
+)

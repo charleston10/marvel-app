@@ -10,6 +10,7 @@ object AppModule {
     private val appModule = module {
         viewModel {
             MainViewModel(
+                get(),
                 get()
             )
         }
