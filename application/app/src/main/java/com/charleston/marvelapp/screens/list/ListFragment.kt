@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.charleston.domain.model.ItemModel
 import com.charleston.marvelapp.databinding.FragmentListBinding
+import com.charleston.marvelapp.extensions.animateFallDown
 import com.charleston.marvelapp.extensions.divisorLastList
 import kotlinx.android.synthetic.main.container_list_result.*
 import kotlinx.android.synthetic.main.container_list_search.*
@@ -81,8 +82,11 @@ class ListFragment : Fragment(), ListAdapter.Listener {
         list.addOnScrollListener(setupPagination(linearLayoutManager))
     }
 
-    private fun loadList(list: List<ItemModel>) {
-        listAdapter.loadItems(list)
+    private fun loadList(items: List<ItemModel>) {
+        if (listAdapter.itemCount == 0) {
+            list.animateFallDown()
+        }
+        listAdapter.loadItems(items)
     }
 
     private fun setupPagination(layoutManager: LinearLayoutManager): RecyclerView.OnScrollListener {

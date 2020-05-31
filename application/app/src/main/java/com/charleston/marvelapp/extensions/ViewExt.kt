@@ -5,8 +5,10 @@ import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.charleston.marvelapp.R
 
 fun dpToPx(dp: Float): Int = (dp * Resources.getSystem().displayMetrics.density).toInt()
 
@@ -29,4 +31,10 @@ fun Context.divisorLastList(): DividerItemDecoration {
 
         override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {}
     }
+}
+
+fun RecyclerView.animateFallDown() {
+    layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+    adapter?.notifyDataSetChanged()
+    scheduleLayoutAnimation()
 }
