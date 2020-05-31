@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.charleston.domain.model.ItemModel
 import com.charleston.marvelapp.databinding.FragmentListBinding
 import com.charleston.marvelapp.extensions.animateFallDown
 import com.charleston.marvelapp.extensions.divisorLastList
+import com.charleston.marvelapp.screens.main.MainFragmentDirections
 import kotlinx.android.synthetic.main.container_list_result.*
 import kotlinx.android.synthetic.main.container_list_search.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -44,7 +46,7 @@ class ListFragment : Fragment(), ListAdapter.Listener {
     }
 
     override fun onClickListener(model: ItemModel) {
-
+        startDetail(model)
     }
 
     private fun initialize() {
@@ -128,5 +130,12 @@ class ListFragment : Fragment(), ListAdapter.Listener {
         }
 
         txt_search.addTextChangedListener(textWatcher)
+    }
+
+    private fun startDetail(model: ItemModel) {
+        view?.post {
+            val action = ListFragmentDirections.actionListFragmentToDetailFragment(model)
+            findNavController().navigate(action)
+        }
     }
 }
