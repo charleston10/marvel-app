@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.charleston.domain.model.ItemModel
 import com.charleston.domain.model.ThemeModel
-import com.charleston.marvelapp.R
-import com.charleston.marvelapp.databinding.FragmentListBinding
 import com.charleston.marvelapp.databinding.FragmentMainBinding
+import com.charleston.marvelapp.extensions.divisorLastList
 import com.charleston.marvelapp.screens.adapters.ListAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -88,6 +87,7 @@ class MainFragment : Fragment(),
             layoutManager = LinearLayoutManager(context)
             adapter = eventAdapter
         }
+        list_events.addItemDecoration(list_events.context.divisorLastList())
     }
 
     private fun handlerState(state: MainState) {
