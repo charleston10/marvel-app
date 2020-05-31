@@ -18,15 +18,13 @@ interface MarvelApi {
     @GET("/v1/public/series")
     suspend fun getSeries(
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int,
-        @QueryMap options: Map<String, String>
+        @Query("limit") limit: Int
     ): ObjectResponse<SerieResponse>
 
     @GET("/v1/public/comics")
     suspend fun getComics(
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int,
-        @QueryMap options: Map<String, String>
+        @Query("limit") limit: Int
     ): ObjectResponse<ComicResponse>
 
     @GET("/v1/public/events")

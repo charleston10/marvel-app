@@ -17,8 +17,8 @@ class ListItemUseCase constructor(
     ): List<ItemModel> {
         return when (themeSelected.type) {
             ThemeEnum.CHARACTERS -> getCharacters(page, perPage, queryName)
-            ThemeEnum.SERIES -> getSeries(page, perPage, queryName)
-            ThemeEnum.COMICS -> getComics(page, perPage, queryName)
+            ThemeEnum.SERIES -> getSeries(page, perPage)
+            ThemeEnum.COMICS -> getComics(page, perPage)
         }
     }
 
@@ -36,25 +36,21 @@ class ListItemUseCase constructor(
 
     private suspend fun getSeries(
         page: Int,
-        perPage: Int,
-        queryName: String?
+        perPage: Int
     ): List<ItemModel> {
         return repository.getSeries(
             offset = page * perPage,
-            limit = perPage,
-            queryName = queryName
+            limit = perPage
         )
     }
 
     private suspend fun getComics(
         page: Int,
-        perPage: Int,
-        queryName: String?
+        perPage: Int
     ): List<ItemModel> {
         return repository.getComics(
             offset = page * perPage,
-            limit = perPage,
-            queryName = queryName
+            limit = perPage
         )
     }
 }

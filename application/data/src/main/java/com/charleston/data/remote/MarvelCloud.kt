@@ -15,7 +15,7 @@ class MarvelCloud(
         var options: Map<String, String> = mapOf()
 
         if (queryName != null && queryName.isNotBlank()) {
-            options = mapOf("nameStartsWith" to queryName)
+            options = mapOf("name" to queryName)
         }
 
         return api.getCharacters(
@@ -28,37 +28,21 @@ class MarvelCloud(
 
     suspend fun getSeries(
         offset: Int,
-        limit: Int,
-        queryName: String?
+        limit: Int
     ): ObjectResponse<SerieResponse> {
-        var options: Map<String, String> = mapOf()
-
-        if (queryName != null && queryName.isNotBlank()) {
-            options = mapOf("nameStartsWith" to queryName)
-        }
-
         return api.getSeries(
             offset = offset,
-            limit = limit,
-            options = options
+            limit = limit
         )
     }
 
     suspend fun getComics(
         offset: Int,
-        limit: Int,
-        queryName: String?
+        limit: Int
     ): ObjectResponse<ComicResponse> {
-        var options: Map<String, String> = mapOf()
-
-        if (queryName != null && queryName.isNotBlank()) {
-            options = mapOf("nameStartsWith" to queryName)
-        }
-
         return api.getComics(
             offset = offset,
-            limit = limit,
-            options = options
+            limit = limit
         )
     }
 

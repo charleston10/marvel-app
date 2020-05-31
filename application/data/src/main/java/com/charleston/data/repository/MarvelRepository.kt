@@ -34,15 +34,14 @@ class MarvelRepository(
 
     override suspend fun getSeries(
         offset: Int,
-        limit: Int,
-        queryName: String?
+        limit: Int
     ): List<ItemModel> {
-        val list = cloud.getSeries(offset, limit, queryName).data.results
+        val list = cloud.getSeries(offset, limit).data.results
         return serieMapper.transform(list)
     }
 
-    override suspend fun getComics(offset: Int, limit: Int, queryName: String?): List<ItemModel> {
-        val list = cloud.getComics(offset, limit, queryName).data.results
+    override suspend fun getComics(offset: Int, limit: Int): List<ItemModel> {
+        val list = cloud.getComics(offset, limit).data.results
         return comicMapper.transform(list)
     }
 
