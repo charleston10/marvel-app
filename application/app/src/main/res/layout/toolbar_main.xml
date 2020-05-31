@@ -41,6 +41,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <ImageView
+            android:id="@+id/iv_menu"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="12dp"
