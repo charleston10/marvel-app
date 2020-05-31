@@ -1,4 +1,4 @@
-package com.charleston.marvelapp.core
+package com.charleston.marvelapp.screens.adapters
 
 import android.text.TextWatcher
 import android.widget.EditText
