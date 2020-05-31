@@ -1,4 +1,4 @@
-package com.charleston.marvelapp.screens.list
+package com.charleston.marvelapp.screens.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

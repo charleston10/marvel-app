@@ -15,7 +15,7 @@ import com.charleston.domain.model.ItemModel
 import com.charleston.marvelapp.databinding.FragmentListBinding
 import com.charleston.marvelapp.extensions.animateFallDown
 import com.charleston.marvelapp.extensions.divisorLastList
-import com.charleston.marvelapp.screens.main.MainFragmentDirections
+import com.charleston.marvelapp.screens.adapters.ListAdapter
 import kotlinx.android.synthetic.main.container_list_result.*
 import kotlinx.android.synthetic.main.container_list_search.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -24,7 +24,8 @@ class ListFragment : Fragment(), ListAdapter.Listener {
 
     private val viewModel by viewModel<ListViewModel>()
 
-    private val listAdapter = ListAdapter(this)
+    private val listAdapter =
+        ListAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
