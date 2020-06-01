@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MarvelApp - Charleston</string>
+    <string name="label_themes">Themes</string>
+    <string name="label_themes_select">Select a theme to view more details</string>
+    <string name="label_events">Events</string>
+    <string name="label_error">unfortunately we were unable to get the data</string>
+    <string name="label_search_hint">Type here for search items by name</string>
+    <string name="label_search_loading">Pesquisando dados</string>
+    <string name="label_events_loading">Loading events</string>
+    <string name="button_close">Close</string>
+    <string name="label_project_name">MRVL</string>
+    <string name="label_showing">Showing %d item(s)</string>
+    <string name="label_list_theme_selected">List of items theme %s</string>
+    <string name="label_list_loading">Loading %s</string>
 </resources>
