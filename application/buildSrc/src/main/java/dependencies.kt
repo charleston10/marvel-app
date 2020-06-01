@@ -40,6 +40,7 @@ object Dependencies {
     val squareMoshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.squareMoshi}"
     val glide = "com.github.bumptech.glide:glide:4.9.0"
     val commonsIo = "commons-io:commons-io:2.4"
+    val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 }
 
 object TestDependencies {
@@ -59,7 +60,8 @@ object AndroidModule {
         Dependencies.navigationUi,
         Dependencies.koin,
         Dependencies.koinViewModel,
-        Dependencies.glide
+        Dependencies.glide,
+        Dependencies.swipeRefreshLayout
     )
 
     val data = listOf(

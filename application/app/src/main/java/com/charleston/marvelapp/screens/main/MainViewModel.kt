@@ -50,8 +50,10 @@ class MainViewModel(
         }
     }
 
-    private fun listEvents() {
-        state.set(MainState.LoadingEvent)
+    fun listEvents(isRefresh: Boolean =  false) {
+        if (isRefresh) state.set(MainState.LoadingRefresh)
+        else state.set(MainState.LoadingEvent)
+
         coroutineScope.launch {
             try {
                 val list = listEventUseCase.execute()
