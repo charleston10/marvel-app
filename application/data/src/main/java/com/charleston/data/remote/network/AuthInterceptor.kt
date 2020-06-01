@@ -1,5 +1,6 @@
 package com.charleston.data.remote.network
 
+import com.charleston.data.BuildConfig
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -17,8 +18,8 @@ class AuthInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val timestamp = System.currentTimeMillis().toString()
-        val publicKey = "5ef027befa4ba7dc659518d6d6925d57"
-        val hash: String = generateHash(timestamp, publicKey, "0838df2b5cd52a2e8d38d7be86e041fead3b43a2")
+        val publicKey = BuildConfig.API_PUB
+        val hash: String = generateHash(timestamp, publicKey, BuildConfig.API_PRI)
 
         var request: Request = chain.request()
 
