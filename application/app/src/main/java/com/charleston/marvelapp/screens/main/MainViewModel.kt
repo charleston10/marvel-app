@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MainViewModel(
     private val listThemesUseCase: ListThemesUseCase,
@@ -52,9 +53,13 @@ class MainViewModel(
     private fun listEvents() {
         state.set(MainState.LoadingEvent)
         coroutineScope.launch {
-            val list = listEventUseCase.execute()
-            listEventMutableLiveData.postValue(list)
-            state.set(MainState.SuccessListEvent)
+            try {
+                val list = listEventUseCase.execute()
+                listEventMutableLiveData.postValue(list)
+                state.set(MainState.SuccessListEvent)
+            } catch (e: Exception) {
+                state.set(MainState.ErrorListEvent)
+            }
         }
     }
 }

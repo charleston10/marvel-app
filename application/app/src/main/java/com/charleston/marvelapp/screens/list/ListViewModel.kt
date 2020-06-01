@@ -80,13 +80,14 @@ class ListViewModel(
     private fun loadListItem() {
         handlerLoading()
 
-        try {
-            coroutineScope.launch {
+        coroutineScope.launch {
+            try {
                 val list = listUseCase.execute(page, perPage, nameSearch, themeSelected)
                 handlerSuccess(list)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                state.set(ListState.Error)
             }
-        } catch (e: Exception) {
-            state.set(ListState.Error)
         }
     }
 
