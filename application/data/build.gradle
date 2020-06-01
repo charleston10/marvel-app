@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def API_PUB = System.getenv("MARVEL_KEY_API_PUB")
+def API_PRI = System.getenv("MARVEL_KEY_API_PRI")
+
 android {
     compileSdkVersion AndroidConfig.compileSdk
     testOptions.unitTests.includeAndroidResources = true
@@ -16,6 +19,8 @@ android {
         testInstrumentationRunner AndroidConfig.instrumentationTestRunner
 
         buildConfigField "String", "BASE_URL", '"https://gateway.marvel.com"'
+        buildConfigField 'String', 'API_PUB', "\"$API_PUB\""
+        buildConfigField 'String', 'API_PRI', "\"$API_PRI\""
     }
 
     compileOptions {
