@@ -11,6 +11,7 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:textColor">@android:color/primary_text_dark</item>
         <item name="materialButtonOutlinedStyle">@style/AppTheme.ButtonOutline</item>
+        <item name="textInputStyle">@style/AppTheme.TextInputLayout</item>
     </style>
 
     <style name="Icon">
@@ -19,5 +20,11 @@
 
     <style name="AppTheme.ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@android:color/primary_text_dark</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/text_input_box_stroke</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="hintTextColor">@android:color/primary_text_dark</item>
     </style>
 </resources>
