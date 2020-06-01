@@ -4,7 +4,7 @@
 Study application made to take advantage of the best programming practices using marvel's public api
 Shows information such as series, characters, events and comics
 
-[VIDEO](https://github.com/charleston10/github-android/blob/master/assets/videos/video-app.mp4?raw=true) || [YOUTUBE](https://youtu.be/T9XUBlfwAxk)
+[APK](https://github.com/charleston10/marvel-app/tree/master/apk/marvel_charleston.apk?raw=true) || [VIDEO](https://github.com/charleston10/github-android/blob/master/assets/videos/video-app.mp4?raw=true) || [YOUTUBE](https://youtu.be/T9XUBlfwAxk)
 
 <table>
   <thead>
