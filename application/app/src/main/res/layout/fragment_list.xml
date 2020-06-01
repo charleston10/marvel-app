@@ -36,7 +36,7 @@
             layout="@layout/container_list_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{vm.themeSelected.type == ThemeEnum.CHARACTERS  ? View.VISIBLE: View.GONE}"
+            android:visibility="@{vm.themeSelected.type == ThemeEnum.CHARACTERS ? View.VISIBLE: View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar3"
@@ -48,12 +48,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
-            android:visibility="@{vm.state instanceof ListState.Success || vm.state instanceof ListState.LoadingPage  ? View.VISIBLE: View.GONE}"
+            android:visibility="@{vm.state instanceof ListState.Success || vm.state instanceof ListState.LoadingPage ? View.VISIBLE: View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_search"
-            app:vm="@{vm}" />
+            app:vm="@{vm}"
+            tools:visibility="visible" />
 
         <include
             android:id="@+id/container_loading"
@@ -70,14 +71,14 @@
 
         <include
             android:id="@+id/container_error"
-            layout="@layout/container_list_error"
+            layout="@layout/container_error"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:visibility="@{vm.state instanceof ListState.Error ? View.VISIBLE: View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/container_search"
+            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

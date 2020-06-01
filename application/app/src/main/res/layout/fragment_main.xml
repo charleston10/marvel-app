@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -12,9 +14,7 @@
             type="com.charleston.marvelapp.screens.main.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -88,6 +88,18 @@
             app:layout_constraintVertical_bias="0.2"
             tools:visibility="gone" />
 
+        <include
+            android:id="@+id/container_error"
+            layout="@layout/container_error"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{vm.state instanceof MainState.ErrorListEvent ? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:visibility="gone" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_events"
             android:layout_width="match_parent"
@@ -100,6 +112,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:listitem="@layout/item_list" />
+            tools:listitem="@layout/item_list"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
