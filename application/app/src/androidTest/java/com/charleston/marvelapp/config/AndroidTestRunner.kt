@@ -1,8 +1,7 @@
-package com.charleston.marvelapp
+package com.charleston.marvelapp.config
 
 import android.app.Application
 import android.content.Context
-import com.charleston.marvelapp.config.KoinTestApplication
 
 class AndroidTestRunner : androidx.test.runner.AndroidJUnitRunner() {
 

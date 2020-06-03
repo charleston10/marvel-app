@@ -8,18 +8,11 @@ import org.hamcrest.Matcher
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 
-class RecyclerViewItemCountAssertion : ViewAssertion {
+class RecyclerViewItemCountAssertion(private val expectedCount: Int) : ViewAssertion {
 
-    private val matcher: Matcher<Int>
+    private val matcher: Matcher<Int> = `is`(expectedCount)
 
-    constructor(expectedCount: Int) {
-        this.matcher = `is`(expectedCount)
-    }
-
-    constructor(matcher: Matcher<Int>) {
-        this.matcher = matcher
-    }
-
+    @Throws(NoMatchingViewException::class)
     override fun check(view: View, noViewFoundException: NoMatchingViewException?) {
         if (noViewFoundException != null) {
             throw noViewFoundException
@@ -27,6 +20,7 @@ class RecyclerViewItemCountAssertion : ViewAssertion {
 
         val recyclerView = view as RecyclerView
         recyclerView.adapter?.let {
+            println("list count ${it.itemCount} and expected $expectedCount")
             assertThat(it.itemCount, matcher)
         }
     }

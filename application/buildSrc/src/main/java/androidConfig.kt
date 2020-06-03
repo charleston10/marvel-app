@@ -8,6 +8,6 @@ object AndroidConfig {
 
     val buildToolsVersion = "28.0.3"
 
-    val instrumentationTestRunner = "com.charleston.marvelapp.AndroidTestRunner"
+    val instrumentationTestRunner = "com.charleston.marvelapp.config.AndroidTestRunner"
 
 }

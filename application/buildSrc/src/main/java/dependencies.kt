@@ -36,7 +36,7 @@ object Dependencies {
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
-    val okHttpLogger    = "com.squareup.okhttp3:logging-interceptor:3.8.0"
+    val okHttpLogger = "com.squareup.okhttp3:logging-interceptor:3.8.0"
     val squareMoshi = "com.squareup.moshi:moshi:${Versions.squareMoshi}"
     val squareMoshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.squareMoshi}"
     val squareMoshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.squareMoshi}"
@@ -62,6 +62,7 @@ object TestDependencies {
     val roboletric = "org.robolectric:robolectric:4.3"
     val kakao = "com.agoda.kakao:kakao:2.1.0"
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:3.8.0"
+    val httpIdlingResourcce = "com.jakewharton.espresso:okhttp3-idling-resource:1.0.0"
 }
 
 object AndroidModule {
@@ -112,6 +113,7 @@ object AndroidModule {
         TestDependencies.mockk,
         TestDependencies.kakao,
         TestDependencies.mockWebServer,
+        TestDependencies.httpIdlingResourcce,
         Dependencies.commonsIo
     )
 }
