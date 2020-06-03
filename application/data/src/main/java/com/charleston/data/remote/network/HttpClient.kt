@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Application
 import com.charleston.data.BuildConfig
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.security.cert.X509Certificate
@@ -18,7 +18,10 @@ import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-class HttpClient(private val application: Application) {
+class HttpClient(
+    private val application: Application,
+    private val urlProvider: UrlProvider
+) {
 
     private lateinit var okHttpClient: OkHttpClient
 
@@ -28,7 +31,7 @@ class HttpClient(private val application: Application) {
 
     fun <T> create(restApiClass: Class<T>): T {
         return Retrofit.Builder()
-            .baseUrl("https://gateway.marvel.com")
+            .baseUrl(urlProvider.getUrl())
             .addConverterFactory(createMoshi())
             .client(createOkHttp())
             .build()
@@ -47,6 +50,7 @@ class HttpClient(private val application: Application) {
             .writeTimeout(30, TimeUnit.SECONDS)
             .cache(cache)
             .addInterceptor(AuthInterceptor())
+            .addInterceptor(provideLogInterceptor())
 
         if (BuildConfig.DEBUG) {
             //enable sniffing http request
@@ -96,5 +100,17 @@ class HttpClient(private val application: Application) {
                 return arrayOf()
             }
         }
+    }
+
+    private fun provideLogInterceptor(): HttpLoggingInterceptor {
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+
+        httpLoggingInterceptor.level = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor.Level.BODY
+        } else {
+            HttpLoggingInterceptor.Level.NONE
+        }
+
+        return httpLoggingInterceptor
     }
 }
