@@ -23,7 +23,6 @@ class HttpClient(
     private val urlProvider: UrlProvider
 ) {
 
-    private lateinit var okHttpClient: OkHttpClient
 
     private companion object {
         private const val CACHE_OF_10_MB: Long = 10 * 1024 * 1024
@@ -33,12 +32,12 @@ class HttpClient(
         return Retrofit.Builder()
             .baseUrl(urlProvider.getUrl())
             .addConverterFactory(createMoshi())
-            .client(createOkHttp())
+            .client(provideOkHttpClient())
             .build()
             .create(restApiClass)
     }
 
-    private fun createOkHttp(): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         val cache = Cache(
             application.cacheDir,
             CACHE_OF_10_MB
@@ -57,9 +56,7 @@ class HttpClient(
             okHttpBuilder.sslSocketFactory(provideSSLSocketFactory(), provideX509TrustManager())
         }
 
-        okHttpClient = okHttpBuilder.build()
-
-        return okHttpClient
+        return okHttpBuilder.build()
     }
 
     private fun createMoshi(): MoshiConverterFactory {
